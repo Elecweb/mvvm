@@ -1,24 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route } from "react-router-dom";
+import MerchantPage1 from "./example/example1";
+import MerchantPage2 from "./example/example2";
+import MerchantPage3 from "./example/example3";
+import MerchantPage4 from "./example/example4";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <BrowserRouter>
+        <Route path="/" exact render={() => <p>Exanple</p>} />
+        <Route path="/example1" component={MerchantPage1} />
+        <Route path="/example2" component={MerchantPage2} />
+        <Route path="/example3" component={MerchantPage3} />
+        <Route path="/example4" component={MerchantPage4} />
+      </BrowserRouter>
     </div>
   );
 }
