@@ -11,11 +11,11 @@ const Account = () => {
           currentValue={"300"}
           prevValue="200"
           change="30%"
-          changeStatus="nagative"
+          changeStatus="positive"
         />
         <Stat
           title="Income"
-          changeType="increase"
+          changeType="decrease"
           currentValue="300"
           prevValue="200"
           change="30%"

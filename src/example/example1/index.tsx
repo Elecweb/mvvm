@@ -116,11 +116,7 @@ const Account = () => {
         />
         <Stat
           title="Total"
-          changeType={
-            accountBalance.income > accountBalance.prevIncome
-              ? "increase"
-              : "decrease"
-          }
+          changeType={total > prevTotal ? "increase" : "decrease"}
           currentValue={formattedTotal}
           prevValue={prevFormattedTotal}
           change={`${totalChange} %`}

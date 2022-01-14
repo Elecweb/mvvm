@@ -56,6 +56,8 @@ abstract class Asset {
     );
   };
 
+  abstract getChangeStatus: () => string;
+
   getFormattedChange = () => {
     return `${this.getChange().toNumber()} %`;
   };
