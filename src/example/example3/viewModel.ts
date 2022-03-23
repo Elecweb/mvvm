@@ -1,8 +1,9 @@
 import { useEffect, useState, useMemo } from "react";
 import { getAccountBalance } from "../services/getAccountBalance";
-import Income from "../../account/example2/Income";
-import Expense from "../../account/example2/Expense";
-import Balance from "../../account/Balance";
+import Income from "../../account/example3/Income";
+import Expense from "../../account/example3/Expense";
+import Balance from "../../account/example3/Balance";
+import ChangeAmount from "../../account/example3/ChangeAmount";
 
 type AccountBalance = {
   name: string;
@@ -69,29 +70,21 @@ const useViewModel = () => {
     };
   }
 
-  const expense = {
-    changeType: expenseIns.isIncrease() ? "positive" : "negative",
-    currentValue: expenseIns.getCurrentAmount().getFormattedAmount(),
-    prevValue: expenseIns.getPrevAmount().getFormattedAmount(),
-    changeStatus: expenseIns.getChangeStatus(),
-    change: expenseIns.getFormattedChange(),
+  const mapChangeAmountToStat = (changeAmount: ChangeAmount) => {
+    return {
+      changeType: changeAmount.isIncrease() ? "positive" : "negative",
+      currentValue: changeAmount.getCurrentAmount().getFormattedAmount(),
+      prevValue: changeAmount.getPrevAmount().getFormattedAmount(),
+      changeStatus: changeAmount.getChangeStatus(),
+      change: changeAmount.getFormattedChange(),
+    };
   };
 
-  const income = {
-    changeType: incomeIns.isIncrease() ? "positive" : "negative",
-    currentValue: incomeIns.getCurrentAmount().getFormattedAmount(),
-    prevValue: incomeIns.getPrevAmount().getFormattedAmount(),
-    changeStatus: incomeIns.getChangeStatus(),
-    change: incomeIns.getFormattedChange(),
-  };
+  const expense = mapChangeAmountToStat(expenseIns);
 
-  const total = {
-    changeType: incomeIns.isIncrease() ? "positive" : "negative",
-    currentValue: totalIns.getCurrentAmount().getFormattedAmount(),
-    prevValue: totalIns.getPrevAmount().getFormattedAmount(),
-    changeStatus: totalIns.getChangeStatus(),
-    change: totalIns.getFormattedChange(),
-  };
+  const income = mapChangeAmountToStat(incomeIns);
+
+  const total = mapChangeAmountToStat(totalIns);
 
   return {
     accountBalance: {
